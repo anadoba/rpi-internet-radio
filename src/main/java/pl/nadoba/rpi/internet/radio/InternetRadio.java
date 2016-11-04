@@ -1,6 +1,7 @@
 package pl.nadoba.rpi.internet.radio;
 
 import javazoom.jl.decoder.JavaLayerException;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -9,6 +10,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class InternetRadio {
+
+    private final static Logger logger = Logger.getLogger(InternetRadio.class);
 
     private RadioConnector connector = new RadioConnector();
     private RadioStations stations = new RadioStations();
@@ -25,12 +28,14 @@ public class InternetRadio {
         Runnable playback = generatePlaybackRunnable(stationUrl);
         executor.execute(playback);
         isPlaying.set(true);
+        logger.debug("Started to play station " + stationUrl.toString());
     }
 
     public void stopPlayback() {
         try {
             connector.stop();
             isPlaying.set(false);
+            logger.debug("Stopped the playback");
         } catch (IOException e) {
             System.out.println("Exception when trying to close radio input stream");
             e.printStackTrace();
@@ -42,11 +47,9 @@ public class InternetRadio {
             try {
                 connector.playRadioStream(stationUrl);
             } catch (IOException e) {
-                System.out.println("I/O exception occured while connecting to " + stationUrl.toString());
-                e.printStackTrace();
+                logger.error("I/O exception occured while connecting to " + stationUrl.toString(), e);
             } catch (JavaLayerException e) {
-                System.out.println("JLayer exception while trying to play " + stationUrl.toString());
-                e.printStackTrace();
+                logger.error("JLayer exception while trying to play " + stationUrl.toString(), e);
             }
         };
     }

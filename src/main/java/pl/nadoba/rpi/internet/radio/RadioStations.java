@@ -1,11 +1,15 @@
 package pl.nadoba.rpi.internet.radio;
 
+import org.apache.log4j.Logger;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RadioStations {
+
+    private final static Logger logger = Logger.getLogger(RadioStations.class);
 
     private Map<String, URL> stations;
 
@@ -16,11 +20,17 @@ public class RadioStations {
                 put("2", new URL("http://radio.flex.ru:8000/radionami"));
             }};
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            logger.error("Error when setting up radio stations list on app start", e);
         }
     }
 
     public URL get(String key) {
-        return stations.containsKey(key) ? stations.get(key) : stations.get("1");
+        if (stations.containsKey(key)) {
+            return stations.get(key);
+        } else {
+            URL stationUrl = stations.get("1");
+            logger.warn("Unexpected station key requested: " + key + " - falling back to default " + stationUrl.toString());
+            return stationUrl;
+        }
     }
 }
