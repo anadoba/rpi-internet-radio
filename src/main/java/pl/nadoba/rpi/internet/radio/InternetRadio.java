@@ -19,7 +19,7 @@ public class InternetRadio {
 
     private AtomicBoolean isPlaying = new AtomicBoolean(false);
 
-    public void playStation(String stationKey) {
+    public void playStation(RemoteControlCommand stationKey) {
         if (isPlaying.get()) {
             stopPlayback();
         }
@@ -28,14 +28,14 @@ public class InternetRadio {
         Runnable playback = generatePlaybackRunnable(stationUrl);
         executor.execute(playback);
         isPlaying.set(true);
-        logger.debug("Started to play station " + stationUrl.toString());
+        logger.info("Started to play station " + stationUrl.toString());
     }
 
     public void stopPlayback() {
         try {
             connector.stop();
             isPlaying.set(false);
-            logger.debug("Stopped the playback");
+            logger.info("Stopped the playback");
         } catch (IOException e) {
             System.out.println("Exception when trying to close radio input stream");
             e.printStackTrace();
