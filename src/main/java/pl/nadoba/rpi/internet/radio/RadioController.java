@@ -29,6 +29,7 @@ public class RadioController {
                         } else {
                             radio.playStation(RemoteControlCommand.CH1);
                         }
+                        break;
                     default: // used by CH buttons
                         radio.playStation(command);
                         break;
