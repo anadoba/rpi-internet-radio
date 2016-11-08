@@ -11,16 +11,24 @@ public class RadioController {
 
     private final static Logger logger = Logger.getLogger(RadioController.class);
 
+    private final File configFile = new File(this.getClass().getClassLoader().getResource("internetRadio.lirc").getFile());
+
     private SimpleLIRCClient lirc;
     private InternetRadio radio;
 
-    public RadioController(File configFile, InternetRadio radio) {
+    public RadioController(InternetRadio radio) {
         try {
             lirc = new SimpleLIRCClient(configFile);
             lirc.addIRActionListener(commandString -> {
                 final RemoteControlCommand command = RemoteControlCommand.valueOf(commandString);
-                logger.info("Remote button " + command + " pressed.");
+                logger.debug("Remote button " + command + " pressed.");
                 switch (command) {
+                    case PLAY_PAUSE:
+                        if (radio.isPlaying()) {
+                            radio.stopPlayback();
+                        } else {
+                            radio.playStation(RemoteControlCommand.CH1);
+                        }
                     default: // used by CH buttons
                         radio.playStation(command);
                         break;

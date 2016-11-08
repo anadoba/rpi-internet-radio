@@ -1,0 +1,19 @@
+begin
+	button = BUT_1
+	config = CH1
+end
+
+begin
+	button = BUT_2
+	config = CH2
+end
+
+begin
+	button = BUT_3
+	config = CH3
+end
+
+begin
+   	button = BUT_PLAY
+	config = PLAY_PAUSE
+end

@@ -19,6 +19,10 @@ public class InternetRadio {
 
     private AtomicBoolean isPlaying = new AtomicBoolean(false);
 
+    public boolean isPlaying() {
+        return isPlaying.get();
+    }
+
     public void playStation(RemoteControlCommand stationKey) {
         if (isPlaying.get()) {
             stopPlayback();
