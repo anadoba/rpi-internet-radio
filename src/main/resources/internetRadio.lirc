@@ -17,3 +17,23 @@ begin
    	button = BUT_PLAY
 	config = PLAY_PAUSE
 end
+
+begin
+   	button = BUT_PREV
+	config = PREV_CH
+end
+
+begin
+   	button = BUT_NEXT
+	config = NEXT_CH
+end
+
+begin
+   	button = BUT_VOL_DOWN
+	config = VOL_DOWN
+end
+
+begin
+   	button = BUT_VOL_UP
+	config = VOL_UP
+end

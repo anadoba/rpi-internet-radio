@@ -30,15 +30,26 @@ public class RadioController {
                             radio.playStation(RemoteControlCommand.CH1);
                         }
                         break;
+                    case PREV_CH:
+                        radio.playPreviousStation();
+                        break;
+                    case NEXT_CH:
+                        radio.playNextStation();
+                        break;
+                    // TODO: execute volume-related commands below, possibly add some private field with current volume
+                    case VOL_DOWN:
+                        break;
+                    case VOL_UP:
+                        break;
                     default: // used by CH buttons
                         radio.playStation(command);
                         break;
                 }
             });
         } catch (LIRCException e) {
-            logger.error("LIRC failure - cfg file " + configFile.toString(), e);
+            logger.error("LIRC failure - cfg file is " + configFile.toString(), e);
         } catch (IOException e) {
-            logger.error("IO exception when reading the file " + configFile.toString(), e);
+            logger.error("IO exception when reading the config file " + configFile.toString(), e);
         }
     }
 }

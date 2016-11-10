@@ -35,6 +35,14 @@ public class InternetRadio {
         logger.info("Started to play station " + stationUrl.toString());
     }
 
+    public void playPreviousStation() {
+        playStation(stations.previousStationKey());
+    }
+
+    public void playNextStation() {
+        playStation(stations.nextStationKey());
+    }
+
     public void stopPlayback() {
         try {
             connector.stop();
