@@ -14,6 +14,36 @@ begin
 end
 
 begin
+	button = BUT_4
+	config = CH4
+end
+
+begin
+	button = BUT_5
+	config = CH5
+end
+
+begin
+	button = BUT_6
+	config = CH6
+end
+
+begin
+	button = BUT_7
+	config = CH7
+end
+
+begin
+	button = BUT_8
+	config = CH8
+end
+
+begin
+	button = BUT_9
+	config = CH9
+end
+
+begin
    	button = BUT_PLAY
 	config = PLAY_PAUSE
 end
