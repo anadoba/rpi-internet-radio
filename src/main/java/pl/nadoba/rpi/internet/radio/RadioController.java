@@ -49,10 +49,11 @@ public class RadioController {
                         int decreasedVolume = volume - volumeStep;
                         if (decreasedVolume < minVolume) break;
 
-                        String[] decreaseVolumeArgs = new String[] {"pactl", "set-sink-volume", pulseAudioDeviceId, "--", "-" +decreasedVolume + "%"};
+                        String[] decreaseVolumeArgs = new String[] {"pactl", "set-sink-volume", pulseAudioDeviceId, "--", "-" + volumeStep + "%"};
                         try {
                             new ProcessBuilder(decreaseVolumeArgs).start();
                             volume = decreasedVolume;
+                            logger.info("Volume decreased to " + volume + "%");
                         } catch (IOException e) {
                             logger.error("Error when decreasing volume - " + Arrays.toString(decreaseVolumeArgs), e);
                         }
@@ -60,10 +61,11 @@ public class RadioController {
                     case VOL_UP:
                         int increasedVolume = volume + volumeStep;
                         if (increasedVolume > maxVolume) break;
-                        String[] increaseVolumeArgs = new String[] {"pactl", "set-sink-volume", pulseAudioDeviceId, "--", "+" +increasedVolume + "%"};
+                        String[] increaseVolumeArgs = new String[] {"pactl", "set-sink-volume", pulseAudioDeviceId, "--", "+" + volumeStep + "%"};
                         try {
                             new ProcessBuilder(increaseVolumeArgs).start();
                             volume = increasedVolume;
+                            logger.info("Volume increased to " + volume + "%");
                         } catch (IOException e) {
                             logger.error("Error when increasing volume - " + Arrays.toString(increaseVolumeArgs), e);
                         }
