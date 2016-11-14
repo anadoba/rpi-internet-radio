@@ -43,6 +43,10 @@ public class InternetRadio {
         playStation(stations.nextStationKey());
     }
 
+    public void resumePlayback() {
+        playStation(stations.getCurrentStationKey());
+    }
+
     public void stopPlayback() {
         try {
             connector.stop();

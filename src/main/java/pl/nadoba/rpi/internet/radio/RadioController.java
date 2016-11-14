@@ -25,6 +25,7 @@ public class RadioController {
     public RadioController(InternetRadio radio) {
         try {
             lirc = new SimpleLIRCClient(configFile);
+            logger.info("Starting internet radio - setting volume to: " + startupVolume + "%");
             String[] setVolumeArgs = new String[] {"pactl", "set-sink-volume", pulseAudioDeviceId, startupVolume + "%"};
             new ProcessBuilder(setVolumeArgs).start();
             volume = startupVolume;
@@ -36,7 +37,7 @@ public class RadioController {
                         if (radio.isPlaying()) {
                             radio.stopPlayback();
                         } else {
-                            radio.playStation(RemoteControlCommand.CH1);
+                            radio.resumePlayback();
                         }
                         break;
                     case PREV_CH:

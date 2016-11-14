@@ -2,10 +2,8 @@ package pl.nadoba.rpi.internet.radio;
 
 import org.apache.log4j.Logger;
 
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +42,10 @@ public class RadioStations {
             logger.warn("Unexpected station key requested: " + key + " - falling back to default " + currentStationKey);
         }
         return stations.get(currentStationKey);
+    }
+
+    public RemoteControlCommand getCurrentStationKey() {
+        return currentStationKey;
     }
 
     public RemoteControlCommand previousStationKey() {

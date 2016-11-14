@@ -18,13 +18,13 @@ public class RadioConnector {
     public void playRadioStream(URL url) throws IOException, JavaLayerException {
         // Connection
         urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.addRequestProperty("Cache-Control","no-cache");
-        urlConnection.addRequestProperty("Connection","keep-alive");
-        urlConnection.addRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36");
-        urlConnection.addRequestProperty("Pragma","no-cache");
-urlConnection.addRequestProperty("Range","bytes=0-");
-urlConnection.addRequestProperty("Accept-Encoding","identity;q=1, *;q=0");
-urlConnection.addRequestProperty("Accept-Language","pl-PL,pl;q=0.8,en-US;q=0.6,en;q=0.4");
+        urlConnection.addRequestProperty("Cache-Control", "no-cache");
+        urlConnection.addRequestProperty("Connection", "keep-alive");
+        urlConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36");
+        urlConnection.addRequestProperty("Pragma", "no-cache");
+        urlConnection.addRequestProperty("Range", "bytes=0-");
+        urlConnection.addRequestProperty("Accept-Encoding", "identity;q=1, *;q=0");
+        urlConnection.addRequestProperty("Accept-Language", "pl-PL,pl;q=0.8,en-US;q=0.6,en;q=0.4");
 
         // Connecting
         urlConnection.connect();
